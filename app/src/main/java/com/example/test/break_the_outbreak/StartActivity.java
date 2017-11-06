@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 /**
  * Created by Lillie Zhou on 11/4/17.
  */
@@ -36,5 +38,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, RegisterActivity.class));
             }
         });
+
     }
 }

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final int DATE_DIALOG_ID = 0;
 
+    private EditText name;
     private EditText symptoms;
     private EditText medications;
     private EditText locations;
@@ -44,15 +45,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        symptoms = (EditText) findViewById(R.id.symptomsText);
-        medications = (EditText) findViewById(R.id.medication);
-        locations = (EditText) findViewById(R.id.locations);
+        name = findViewById(R.id.nameText);
+        symptoms = findViewById(R.id.symptomsText);
+        medications = findViewById(R.id.medication);
+        locations = findViewById(R.id.locations);
 
-        diet = (EditText) findViewById(R.id.diet);
-        additionalInfo = (EditText) findViewById(R.id.additional);
+        diet = findViewById(R.id.diet);
+        additionalInfo = findViewById(R.id.additional);
 
-        mDateDisplay = (TextView) findViewById(R.id.showMyDate);
-        mPickDate = (Button) findViewById(R.id.myDatePickerButton);
+        mDateDisplay = findViewById(R.id.showMyDate);
+        mPickDate = findViewById(R.id.myDatePickerButton);
 
         mPickDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -110,40 +112,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected String getData() {
-        String data = "";
+        String data = "Hello, my name is " + name.getText().toString() + ". ";
 
         //data += "Illness started on " + startIllness.toString();
 
         String userSymptoms = symptoms.getText().toString();
-        if (!userSymptoms.equals("[symptoms]")) {
+
+        if (!userSymptoms.equals("Symptoms")) {
             data += "I am experiencing " + userSymptoms + ". ";
         } else {
             data += "No self reported symptoms.\n";
         }
 
         String userMedications = medications.getText().toString();
-        if (!userMedications.equals("[medications taken]")) {
+        if (!userMedications.equals("Current Medications")) {
             data += "I am currently taking " + userMedications + ". ";
         } else {
             data += "No self reported medications.\n";
         }
 
         String userDiet = diet.getText().toString();
-        if (!userDiet.equals("[diet]")) {
+        if (!userDiet.equals("Diet")) {
             data += "My diet consists of " + userDiet + ". ";
         } else {
             data += "No self reported dietary intake.\n";
         }
 
         String userLocations = locations.getText().toString();
-        if (!userLocations.equals("[locations]")) {
+        if (!userLocations.equals("Visited Locations")) {
             data += "Visited locations include: " + userLocations + ". ";
         } else {
             data += "No self reported locations.\n";
         }
 
         String userAdditional = additionalInfo.getText().toString();
-        if (!userAdditional.equals("[additional info]")) {
+        if (!userAdditional.equals("Additional Information")) {
             data += "Additional info: " + userAdditional;
         } else {
             data += "No other self reported info.";
@@ -165,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "No email clients installed", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private void updateDisplay() {
         this.mDateDisplay.setText(
